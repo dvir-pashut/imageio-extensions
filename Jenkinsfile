@@ -3,6 +3,7 @@ pipeline{
     
     tools {
     maven "some name"
+    jdk "java ledugma"
     }
 
     stages{
