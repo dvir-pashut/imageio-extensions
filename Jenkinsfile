@@ -9,7 +9,11 @@ pipeline{
         stage("A"){
             steps{
                 echo "========executing A========"
-                sh 'mvn install'
+                
+                configFileProvider([configFile(fileId: 'MyGlobalSettings', variable: 'set')]) {
+                sh "mvn -s ${set} install"
+                } 
+                
             }
             post{
                 always{
@@ -36,3 +40,5 @@ pipeline{
         }
     }
 }
+
+
