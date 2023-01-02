@@ -7,7 +7,14 @@ pipeline{
     }
 
     stages{
-        stage("A"){
+        stage("checkout"){
+            steps{
+                echo "========checking out (loking hella fine)========"
+                deleteDir()
+                checkout scm 
+            }
+        }
+        stage("build"){
             steps{
                 echo "========executing A========"
                 
@@ -16,8 +23,6 @@ pipeline{
                         sh "mvn -s ${set} install"
                     } 
                 } // withMaven will discover the generated Maven artifacts, JUnit Surefire & FailSafe reports and FindBugs reports
-                
-                
                 
             }
             post{
